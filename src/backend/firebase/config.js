@@ -13,5 +13,6 @@ const firebaseConfig = {
 };
 
 export const fb = firebase.initializeApp(firebaseConfig);
-export const db = fb.firestore();
+export const dbFire = fb.firestore();
 export const authFb = fb.auth();
+export const fecha = firebase.firestore.FieldValue.serverTimestamp(); 

@@ -1,0 +1,29 @@
+
+.cardTime {
+    margin-top: 1rem;
+    border: none;
+    border-radius: 20px;
+    background: linear-gradient(to right, #a592e9,#533CA6);
+    padding: 12px;
+    padding-top: 25px;
+}
+
+.Fitness-CardTime {
+    height:100px;
+    width: 250px;
+}
+
+.centre{
+    text-align: center;
+}
+
+.justT{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.end{
+    text-align: end;
+    
+}
+

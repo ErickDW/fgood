@@ -1,0 +1,26 @@
+.hambur{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.hamburImg{
+    height:30px; 
+    width:30px;
+    margin-left: 10px;
+}
+.buttonDr{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-right: 8%;
+}
+
+@media(max-width: 920px) {
+    .buttonDr{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: auto;
+        padding: 2%;
+    }
+}

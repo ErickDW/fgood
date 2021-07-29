@@ -1,15 +1,16 @@
 
 .navbar {
-  background-color: #86878d;
+  background-color: #c7c7ca;
   height: 80px;
   display: flex;
   justify-content: flex-start;
+  margin-right: 1rem;
   align-items: center;
 }
 
 .menu-bars {
-  margin-left: 2rem;
-  font-size: 2rem;
+  
+  font-size: 1rem;
   background: none;
 }
 

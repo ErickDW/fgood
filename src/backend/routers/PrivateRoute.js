@@ -1,25 +1,17 @@
-import React, {useState}from 'react';
-
+import React from 'react';
 import {Route, Redirect } from 'react-router';
-import {authFb} from '../../backend/firebase/config'
+import {useAuth} from '../utils/authContext'
 
 
-
-export const PrivateRoute = ({component: Component, ...rest}) =>{
-    
-    const [currentUser] = useState(authFb.currentUser);
-    console.log(currentUser)
-    
-    
-    return(
-        
-        <Route
-            {...rest}
-            render = {props =>{
-                return currentUser ? <Component {...props}/> : <Redirect to='/loginAndRegister'/>
-            }}
-        />
-    )
+export const PrivateRoute = ({children, ...rest}) => {
+    const auth = useAuth();
+    return <Route {...rest} render={({location}) => {
+        if(auth.user == null) return <p>Check authorization access...</p>
+        return auth.user ? children : <Redirect to={{
+            pathname: '/loginandregister',
+            state: { from: location }
+        }} />
+    }} />
 }
 
-export default PrivateRoute;
+

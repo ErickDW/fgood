@@ -1,0 +1,53 @@
+
+.cardTX {
+    /* margin-top: 1rem; */
+    border: none;
+    border-radius: 70px;
+    background: linear-gradient(to right, #ffffff,#f6fcff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+
+    cursor: pointer;
+    -webkit-transition:all .3s ease; /* Safari y Chrome */
+-moz-transition:all .3s ease; /* Firefox */
+-o-transition:all 3s ease; /* IE 9 */
+-ms-transition:all .3s ease; /* Opera */
+
+    
+    /* &:enabled:hover {
+        background-color: var(
+          --color-${(p) => p.bg}-hover,
+          var(--color-${(p) => p.bg})
+        );
+        border-color: rgba(0, 0, 0, 0.15);
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.16);
+      } */
+    
+}
+
+.cardTX:hover{
+    background: #F2C744;
+    -webkit-transform:scale(1.02);
+    -moz-transform:scale(1.02);
+    -ms-transform:scale(1.02);
+    -o-transform:scale(1.02);
+    transform:scale(1.02);
+}
+.Fitness-CardX {
+    height: 120px;
+    width: 100%;
+}
+
+
+
+.imgFX{
+    width: 50px; 
+    height: 50px;
+    margin-bottom: 15px;
+    border-radius: 70px;
+    background: linear-gradient(#e9e7e7,#ffffff);
+}
+

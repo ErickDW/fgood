@@ -1,0 +1,23 @@
+
+.carS {
+    padding: 28px;
+   
+    
+}
+
+
+
+.centre{
+    text-align: center;
+}
+
+.justT{
+    justify-content: center;
+}
+.endT{
+    height: 20px;
+    width: 30px;
+    border-radius: 100px;
+    /* color: rgba(204, 204, 204, 0.548); */
+}
+
