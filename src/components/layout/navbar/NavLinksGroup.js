@@ -71,7 +71,6 @@ const LinksGroup = styled.div`
 function NavLinksGroup(props) {
   const db = dbFire;
   const auth = authFb;
-  const h = props.std;
 
   const [data, setData] = useState([])
  
@@ -108,12 +107,12 @@ function NavLinksGroup(props) {
   
   
  useEffect( () => {
-   if(h){
-    console.log("antes", h)
+   if(props.std){
+    console.log("antes", props.std)
       dat().then(
           e =>{
-          props.funesta(Number(!h));
-          console.log("ahora", h, data, e)
+          props.funesta(Number(!props.std));
+          console.log("ahora", props.std, data, e)
         }
       );
       
@@ -122,7 +121,7 @@ function NavLinksGroup(props) {
       console.log("No hago nada")
    }
   
- }, [h, props.funesta, dat, data])
+ }, [props.std, props.funesta, dat])
 
 
 const f = () =>{

@@ -144,7 +144,15 @@
 .product-grid .rating li.disable{ color: #b6b3b0; }
 @media screen and (max-width:990px){
     .product-grid{ margin: 0 0 30px; }
+    .product-grid .product-links li{
+        
+        transform: none;
+        transition: none;
+    }
+    .product-grid .product-links li a{ background: #ffd800; }
+
 }
+
 .descri{
     display: flex;
     justify-content: flex-start;
