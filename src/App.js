@@ -8,34 +8,35 @@ import Layout from "./components/layout/Layout";
 // Direciones
 import LoginAndRegister from './pages/loginAndRegister/LoginAndRegister';
 import ChangePassword from './pages/changePassword/ChangePassword';
+import Home from "./pages/home/Home";
+import { DataProvider } from "./backend/firebase/DataContext";
 //conexión principal
 function App() {
+
+
   return (
     <>
       <AuthProvider>
         <Router>
           <GlobalStyle/>
-            <Switch>
-              {/* Rutas principales*/}
-              <PrivateRoute exact path="/">
-                {/* <Home/> */}
-                <Layout/>
-              </PrivateRoute>
-
-              {/* Ruta protegida */}
-              {/* <Route/> */}
-              {/* Rutas disponibles */}
-            
-              <Route path="/loginandregister" component={LoginAndRegister}/>
-
-              <Route path="/changePassword" component={ChangePassword}/>
-
-              {/* Error 404 */}
-              {/* <Route /> */}
-            </Switch>
-      </Router>
-    </AuthProvider> 
-      
+          <DataProvider>
+            <Layout>
+              <Switch>
+                {/* Rutas principales*/}
+                  {/* Ruta protegida */}
+                <PrivateRoute exact path="/">
+                  <Home/>
+                </PrivateRoute>
+                {/* Rutas disponibles */}
+                <Route path="/loginandregister" component={LoginAndRegister}/>
+                <Route path="/changePassword" component={ChangePassword}/>
+                {/* Error 404 */}
+                {/* <Route /> */}
+              </Switch>
+            </Layout> 
+          </DataProvider>
+        </Router>
+      </AuthProvider> 
     </>
   );
 }

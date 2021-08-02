@@ -1,12 +1,15 @@
-import styled from "styled-components";
+import { useContext, useEffect } from "react";
 import NavLink from "./NavLink";
+
+//La data de la db
+import { DataContext } from "../../../backend/firebase/DataContext";
+
+//Estilos
+import styled from "styled-components";
 import {breakpoints as bp} from '../../../GlobalStyle';
 import './NavLinksGroup.css';
-import  util  from '../../../backend/utils/utilidades'
-import { dbFire, authFb} from "../../../backend/firebase/config";
 
-import { useEffect, useState} from "react";
-
+//Estilo de la etiqueta LinksGroup
 const LinksGroup = styled.div`
   
   flex-direction: column;
@@ -15,7 +18,7 @@ const LinksGroup = styled.div`
   
   overflow: hidden;
   overflow-y: auto;
-   background-color: rgba(var(--color-secondary-rgb), 0.04);
+  background-color: rgba(var(--color-secondary-rgb), 0.04);
   transition: flex-grow 0.3s cubic-bezier(0.4, 0, 1, 1);
   ::-webkit-scrollbar {
     width: 4px;
@@ -39,110 +42,24 @@ const LinksGroup = styled.div`
 `;
 
 
-
-// const links = [
-//   {
-//     to: "/products",
-//     icon: "fas fa-box",
-//     label: "Products",
-//   },
-//   {
-//     to: "/orders",
-//     icon: "fas fa-clipboard",
-//     label: "Customer Orders",
-//   },
-//   {
-//     to: "/subs",
-//     icon: "fas fa-redo-alt",
-//     label: "Subscriptions",
-//   },
-//   {
-//     image: "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=226&w=440",
-//     name: "Burrito de pollo",
-//     price: 13.63,
-//   },
-//   {
-//     image: "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=226&w=440",
-//     name: "Burrito de pollo",
-//     price: 13.63,
-//   },
-// ];
-
 function NavLinksGroup(props) {
-  const db = dbFire;
-  const auth = authFb;
-
-  const [data, setData] = useState([])
- 
-  const dat = async () => {
-    
-    return await db.collection('cuenta')
-    .where('idUsuer', '==', auth.currentUser.uid ).orderBy('fecha','desc')
-    .onSnapshot((QuerySnapshot) =>{
-        if(QuerySnapshot.empty){
-           
-        }else{
-            setData([]);
-            let f = [];
-            let contador = 1;
-            QuerySnapshot.forEach( element =>{
-                let fete = element.data().fecha;
-                if(fete === null){
-                    fete = '00/00/0000'
-                }else{
-                    fete = fete.toDate();
-                }
-                f.push({...element.data(), fecha: new util().obtenerfecha(fete), idCuenta: element.id, idc: contador++});
-                setData(f);
-                return f;
-                
-            });
-            
-        }
-    })
-    
-   }
   
-   
+  const {data} = useContext(DataContext); //Data de la db
   
-  
- useEffect( () => {
-   if(props.std){
-    console.log("antes", props.std)
-      dat().then(
-          e =>{
-          props.funesta(Number(!props.std));
-          console.log("ahora", props.std, data, e)
-        }
-      );
-      
-   }else{
-      
-      console.log("No hago nada")
-   }
-  
- }, [props.std, props.funesta, dat])
-
-
-const f = () =>{
-  return Object.keys(data).map((l) => (
-    <NavLink
-      compact={props.compact}
-      key={data[l].idc}
-      image={data[l].image}
-      plato={data[l].name}
-      precio={data[l].price}
-    />
-  ))
-}
- 
+  useEffect(() => {
+  }, [data])
 
   return (
-    !props.std ? 
     <LinksGroup {...props}>
-      {f()}
-    </LinksGroup> : <LinksGroup {...props}>
-      
+      {Object.keys(data).map((l) => (
+        <NavLink
+          compact={props.compact}
+          key={data[l].idc}
+          image={data[l].image}
+          plato={data[l].name}
+          precio={data[l].price}  
+        />
+      ))}
     </LinksGroup>
   );
 }

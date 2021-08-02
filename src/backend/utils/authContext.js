@@ -11,6 +11,7 @@ const useAuth = () => {
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userID, setUserID] = useState('');
 
   useEffect(() => {
     const unsubscribe = authFb.onAuthStateChanged((user) => {
@@ -20,12 +21,24 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    const uSub = authFb.onAuthStateChanged((user) => {
+      if (user){ 
+        setUser(user);
+        setUserID(user.uid)
+      }
+      else setUser('');
+    });
+    return () => uSub();
+  }, []);
+
   const signIn = (email, password) => {
     return new Promise(async (resolve, reject) => {
       try {
         const { user } = await authFb
           .signInWithEmailAndPassword(email, password);
         setUser(user);
+        setUserID(user.uid);
         resolve(user);
       } catch (e) {
         reject(e);
@@ -42,6 +55,7 @@ const loginUserGoogle = () => {
         .then(result =>{
           const { user } = result;
           setUser(user);
+          setUserID(user.uid)
           resolve(user);
         })
         .catch(result =>{
@@ -61,6 +75,7 @@ const loginUserGoogle = () => {
       try {
         await authFb.signOut();
         setUser(null);
+        setUserID('');
         resolve();
       } catch (e) {
         reject(e);
@@ -71,29 +86,36 @@ const loginUserGoogle = () => {
   const register = (email, password, userName) => {
     return new Promise(async (resolve, reject) => {
       try {
-          console.log("holiii", email)
           await authFb
           .createUserWithEmailAndPassword(email, password)
           .then(result =>{
             result.user.updateProfile({
               displayName: userName
             })
-            const conf = {url: "http://localhost:3000/" }
+            const conf = {url: "https://e-fgood.web.app/loginandregister" }
 
             //* Enviar Email de verificacion
             result.user.sendEmailVerification(conf).catch( error => { 
               console.error(error);
-            }) });
+              const { user } = result;
+              setUser(user);
+              setUserID(user.uid)
+              resolve(user);
+
+            }) })
+            .catch( e =>{
+              resolve(e);
+
+            });
         
-        setUser(user);
-        resolve(user);
+        
       } catch (e) {
         reject(e);
       }
     });
   };
   return (
-    <authContext.Provider value={{ user, signIn, signOut, register, loginUserGoogle}}>
+    <authContext.Provider value={{ user, signIn, signOut, register, loginUserGoogle, userID, setUserID}}>
       {children}
     </authContext.Provider>
   );
