@@ -21,10 +21,10 @@ function DetaPago() {
           <Row className={"justT"}>
               <Col className={".justT"}>
               <p>Persons</p>
-              <div class="btn-group" role="group" style={{alignItems:'center' }}>
-  <button type="button" class="btn " style={{justifyContent: 'center', borderTopLeftRadius:8, borderBottomLeftRadius:8, display:'flex', alignItems:'center', background:'rgba(204, 204, 204, 0.548)', marginRight:10}}><FontAwesomeIcon icon={faMinus} style={{width:10, height:10}}/></button>
+              <div className="btn-group" role="group" style={{alignItems:'center' }}>
+  <button type="button" className="btn " style={{justifyContent: 'center', borderTopLeftRadius:8, borderBottomLeftRadius:8, display:'flex', alignItems:'center', background:'rgba(204, 204, 204, 0.548)', marginRight:10}}><FontAwesomeIcon icon={faMinus} style={{width:10, height:10}}/></button>
   <h4>1</h4>
-  <button type="button" class="btn " style={{justifyContent: 'center', borderTopRightRadius:8, borderBottomRightRadius:8, display:'flex', alignItems:'center', background:'rgba(204, 204, 204, 0.548)', marginLeft:10}}><FontAwesomeIcon icon={faPlus} style={{width:10, height:10}}/></button>
+  <button type="button" className="btn " style={{justifyContent: 'center', borderTopRightRadius:8, borderBottomRightRadius:8, display:'flex', alignItems:'center', background:'rgba(204, 204, 204, 0.548)', marginLeft:10}}><FontAwesomeIcon icon={faPlus} style={{width:10, height:10}}/></button>
 </div>
               </Col>
               <Col style={{paddingTop:10, marginTop:15}}>

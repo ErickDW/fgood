@@ -26,7 +26,7 @@ const StyleLink = styled(Link)`
 
 function Deta() {
   return (
-    <StyleLink >
+    <StyleLink to={'/'}>
       <Container className="mt-3 mb-4">
         <div className={'emo'}>
           <h3 style={{marginLeft:40, marginRight:15}}>My</h3>

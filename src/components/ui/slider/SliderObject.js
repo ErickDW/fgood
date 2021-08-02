@@ -25,8 +25,8 @@ const CardSli = () => {
                                 
                                 spaceBetween={10}
                                 slidesPerView={4}
-                                onSlideChange={() => console.log('slide change, holsofoas')}
-                                onSwiper={(swiper) => console.log(swiper)}
+                                // onSlideChange={() => console.log('slide change, holsofoas')}
+                                // onSwiper={(swiper) => console.log(swiper)}
                             >
                                 {categories.map(data =>{
                                     return(<SwiperSlide key={data.id}>

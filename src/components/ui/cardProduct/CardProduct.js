@@ -29,18 +29,18 @@ const CardProduct = () =>{
     }
 
     return(
-        <div class="row" style={{ justifyContent:'center'}}>
+        <div className="row" style={{ justifyContent:'center'}}>
             {food.map(data =>{ return (
-                <div class="col-md-3 col-sm-6" key={data.id}>
-                    <div class="product-grid new">
-                        <div class="product-image">
-                            <a href="/" class="image"> 
+                <div className="col-md-3 col-sm-6" key={data.id}>
+                    <div className="product-grid new">
+                        <div className="product-image">
+                            <a href="/" className="image"> 
                                 {/* imagen del producto */}
-                                <img class="pic-1" src={data.image} alt={"img not found"} onError={imgNotFound}/> 
+                                <img className="pic-1" src={data.image} alt={"img not found"} onError={imgNotFound}/> 
                             </a>
                             {/* si el produco es nuevo */}
-                            <span class="product-new-label">New</span>
-                            <ul class="product-links">
+                            <span className="product-new-label">New</span>
+                            <ul className="product-links">
                                 {/* boton del carro */}
                                 <li onClick={e =>{ e.preventDefault();
                                     addCart(data)}}> 
@@ -48,12 +48,12 @@ const CardProduct = () =>{
                                 </li>
                             </ul>
                             {/* tiempo de llegada */}
-                            <div class="price">{data.time}</div>
+                            <div className="price">{data.time}</div>
                         </div>
-                        <div class="product-content">
+                        <div className="product-content">
                             {/* nombre del producto */}
-                            <h3 class="title"><a href="/">{data.name}</a></h3>
-                            <ul class="rating">
+                            <h3 className="title"><a href="/">{data.name}</a></h3>
+                            <ul className="rating">
                                 <div className={"descri"}>
                                     {/* descripcion del producto, estrella, calificacion y precio */}
                                     <FontAwesomeIcon icon={faStar} color={"#FFD200"} />
