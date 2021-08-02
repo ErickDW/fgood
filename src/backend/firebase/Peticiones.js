@@ -1,11 +1,11 @@
 import { dbFire, authFb, fecha } from "./config";
 
 class Peticiones{
+    
     constructor(){
         this.db = dbFire;
         this.auth = authFb;
     }
-    
 
     async addCart(datax){
         return await this.db.collection('cuenta').add({

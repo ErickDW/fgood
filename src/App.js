@@ -16,11 +16,11 @@ function App() {
 
   return (
     <>
-      <AuthProvider>
-        <Router>
-          <GlobalStyle/>
-          <DataProvider>
-            <Layout>
+      <AuthProvider> {/* Manejo del estado de la cuenta */}
+        <Router> {/* Direccion*/}
+          <GlobalStyle/> {/* Estilo global*/}
+          <DataProvider> {/* Manejo de la data en la db*/}
+            <Layout> {/* silidebar  de la orden*/}
               <Switch>
                 {/* Rutas principales*/}
                   {/* Ruta protegida */}
