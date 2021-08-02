@@ -1,19 +1,21 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import firebase from 'firebase/app'
+import firebase from 'firebase/app' //Config de firebase para provaider
 
-import {authFb} from '../firebase/config'
+import {authFb} from '../firebase/config'// autenticacion
 
-const authContext = createContext();
+const authContext = createContext(); //Creando contexto global
 
 const useAuth = () => {
-  return useContext(authContext);
+  return useContext(authContext); //Contexto de la autenticacion
 };
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [userID, setUserID] = useState('');
+
+  const [user, setUser] = useState(null); //Estado del usuario, logueado o sin loguear
+  const [userID, setUserID] = useState(''); //Identificador del usuario
 
   useEffect(() => {
+    //Estado del usuario
     const unsubscribe = authFb.onAuthStateChanged((user) => {
       if (user) setUser(user);
       else setUser(false);
@@ -22,6 +24,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    //Estado del usuario y ID del Usuario
     const uSub = authFb.onAuthStateChanged((user) => {
       if (user){ 
         setUser(user);
@@ -33,6 +36,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const signIn = (email, password) => {
+    //SigIn con Email y contraseña
     return new Promise(async (resolve, reject) => {
       try {
         const { user } = await authFb
@@ -48,9 +52,10 @@ const AuthProvider = ({ children }) => {
 
 
 const loginUserGoogle = () => {
+    // sigIn con google
     return new Promise(async (resolve, reject) => {
       try {
-        const provaider =  new firebase.auth.GoogleAuthProvider();
+        const provaider =  new firebase.auth.GoogleAuthProvider(); //Provider pop up
         await authFb.signInWithPopup(provaider)
         .then(result =>{
           const { user } = result;
@@ -71,6 +76,7 @@ const loginUserGoogle = () => {
 }
 
   const signOut = () => {
+    // Cerrar sesion
     return new Promise(async (resolve, reject) => {
       try {
         await authFb.signOut();
@@ -84,6 +90,7 @@ const loginUserGoogle = () => {
   };
 
   const register = (email, password, userName) => {
+    // registro con correo y contraseña
     return new Promise(async (resolve, reject) => {
       try {
           await authFb
@@ -92,7 +99,7 @@ const loginUserGoogle = () => {
             result.user.updateProfile({
               displayName: userName
             })
-            const conf = {url: "https://e-fgood.web.app/loginandregister" }
+            const conf = {url: "https://e-fgood.web.app/loginandregister" } //Correo de verificacion direccion a la que reenvia
 
             //* Enviar Email de verificacion
             result.user.sendEmailVerification(conf).catch( error => { 

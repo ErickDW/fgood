@@ -1,6 +1,6 @@
 
 class Utilidades{
-    
+    //Funcion para obtener fecha 
     obtenerfecha(timeStamp){
      // console.log(timeStamp);
         if(timeStamp === null){

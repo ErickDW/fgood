@@ -53,12 +53,7 @@ function Navbar(props) {
       <StyledNav compact={compact} {...props}>
         <Logo compact={compact} setclose={props.close} setcompact={setCompact}/>
         <Deta/>
-        {/* 
-        <Logo compact={compact} setClose={props.close} setCompact={setCompact} setDataXD={props.cardDet} orO={props.otr}/>
-
-        <NavLinksGroup compact={compact} setDataF={props.cardDet}/> */}
         <NavLinksGroup compact={compact} std={props.stado} funesta={props.carddt}/>
-
         <DetaPago/>
         {/* <NavToggle compact={compact} setCompact={setCompact} /> */}
       </StyledNav>

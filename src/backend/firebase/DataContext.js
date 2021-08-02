@@ -14,6 +14,7 @@ export const DataProvider = ({children}) =>{
     const auth = useAuth(); //Usuario
     const db = dbFire; //db firestore
     const [data, setData] = useState([]); //arreglo de datos
+    const [dataPrice, setDataPrice] = useState(0);
 
 
     useEffect(() => {
@@ -26,7 +27,8 @@ export const DataProvider = ({children}) =>{
                     //si no hay data en la db no hace nada o se puede puner un aviso aquí
                 }else{
                     let f = []; //arreglo para almacenar los datos
-                    let contador = 1; //contador de los elementos del arreglo
+                    let contador = 1;
+                    let pre = 0; //contador de los elementos del arreglo
                     QuerySnapshot.forEach( element =>{
                         let fete = element.data().fecha; //fecha del pedido
                         if(fete === null){
@@ -34,8 +36,11 @@ export const DataProvider = ({children}) =>{
                         }else{
                             fete = fete.toDate();
                         }
+                        
+                        pre += element.data().price;
                         f.push({...element.data(), fecha: new util().obtenerfecha(fete), idCuenta: element.id, idc: contador++});
                     });
+                    setDataPrice(pre);
                     setData(f);//Elementos agregados a la data
                     return f;
                 }
@@ -44,7 +49,7 @@ export const DataProvider = ({children}) =>{
     }, [auth.user,auth.userID, db])
 
     return (
-        <DataContext.Provider value={{data, setData}}>
+        <DataContext.Provider value={{data, setData, dataPrice, setDataPrice}}>
             {children}
         </DataContext.Provider>
     )
